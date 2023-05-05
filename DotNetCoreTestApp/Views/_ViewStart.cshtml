@@ -1,0 +1,17 @@
+﻿
+@{
+
+    switch (ViewData["page"])
+    {
+        case "_ErrorLayout":
+            Layout = "_ErrorLayout";
+            break;
+        case "Users":
+            Layout = "_UserLayout";
+            break;
+        default:
+            Layout = "_Layout";
+            break;
+    }
+    
+}

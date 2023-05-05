@@ -1,0 +1,26 @@
+﻿@page "/SecondPage"
+@using BlazorAppDemo.Models;
+@inject ApplicationStates appState
+
+<PageTitle>SecondPage</PageTitle>
+
+<h1>Object Received:@States.UserDto!.UserName </h1>
+<h1>Object Received:@States.UserDto!.Password </h1>
+<h1>Object Received:@States.UserDto!.IsActive </h1>
+
+
+
+
+
+
+
+@code {
+    
+
+    public ApplicationStates States { get; set; }
+    protected override void OnInitialized()
+    {
+        States = appState;
+
+    }
+}

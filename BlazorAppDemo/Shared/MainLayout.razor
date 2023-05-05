@@ -1,0 +1,35 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>BlazorAppDemo</PageTitle>
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        </div>
+        <div>
+            <h1>Way:1</h1>
+            @{
+                var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+                if (env == "Development")
+                {
+                    <strong>@env</strong>
+                }
+
+            }
+        </div>
+        <div>
+            <h1>Way:2</h1>
+            @{
+               <strong>@GetEnvironemntInfo.Info</strong>
+            }
+        </div>
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>

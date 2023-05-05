@@ -1,0 +1,16 @@
+﻿@{
+    List<string> Fruits = (List<string>)ViewData["Fruits"]!;
+}
+<div class="form-group">
+    Select Test: <br />
+
+    @{
+        if (Fruits!.Count > 0)
+        {
+            foreach (var item in Fruits)
+            {
+                <input type="checkbox" name="@item" value="@item" /> <strong>@item</strong>  <hr>
+            }
+        }
+    }
+</div>

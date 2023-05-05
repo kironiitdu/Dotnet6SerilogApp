@@ -1,0 +1,67 @@
+﻿
+<div>
+    <label>CarModel:</label>
+    <input type="text" id="CarModel" class="form-control" name="CarModel" placeholder="Enter Car Model" required>
+</div>
+<hr />
+<div class="check">
+
+    <label>Addons:</label>
+
+    <input type="checkbox" name="SelectedCheckboxes" value="10%off First service visit">
+    <label for="10%off First service visit">10%off First service visit</label>
+    <input type="checkbox" name="SelectedCheckboxes" value="10%off Waterwash">
+    <label for="10%off Waterwash">10%off Waterwash</label>
+    <input type="checkbox" name="SelectedCheckboxes" value="Free AC Inspection">
+    <label for="Free AC Inspection">Free AC Inspection</label>
+
+
+</div>
+<hr />
+<button id="btnSubmit" type="submit" class="btn btn-primary" onclick="SubmitToAPI()">
+    Submit
+</button>
+
+
+<script>
+    function SubmitToAPI() {
+
+        var addonsList = [];
+        //Getting Addons
+
+        var addons = document.querySelectorAll('input[type=checkbox]:checked');
+
+        for (var i = 0; i < addons.length; i++) {
+            var objAddons = {};
+            objAddons.CheckboxName = addons[i].value;
+            objAddons.IsChecked = true;
+            addonsList.push(objAddons)
+        }
+
+
+        //Getting Car textbox value
+        var CarModel = document.getElementById("CarModel").value;
+
+        //Binding API Model
+        var objCar = {};
+        objCar.CarModel = CarModel;
+        objCar.Addons = addonsList;
+
+        console.log(objCar);
+
+        $.ajax({
+            type: "POST",
+            url: "/api/CarServiceForm/Create",
+            data: JSON.stringify(objCar),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+            },
+            failure: function (response) {
+                //failure  message
+            }
+        });
+
+    }
+</script>

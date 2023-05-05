@@ -1,0 +1,31 @@
+﻿@using System.Security.Principal
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+<ul class="navbar-nav">
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        @foreach (var claim in User.Claims)
+        {
+            var data = claim.Type;
+            var value = claim.Value;
+        }
+        <span class="navbar-text text-dark">Hello @User.Identity?.Name!</span>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignOut">Sign out</a>
+        </li>
+    }
+    @if (@HttpContextAccessor.HttpContext.User.HasClaim(c => c.Type == "aio" && c.Value == "True"))
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-action="" asp- controller="">Audit</a>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">Sign in</a>
+        </li>
+    }
+</ul>

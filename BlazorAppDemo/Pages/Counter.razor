@@ -1,0 +1,24 @@
+﻿@page "/counter"
+@using BlazorAppDemo.Models;
+@inject ApplicationStates appState
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Object Received:@States.UserDto.UserName   </h1>
+
+
+
+
+
+
+
+@code {
+    private int currentCount = 0;
+
+    public ApplicationStates States { get; set; }
+    protected override void  OnInitialized()
+    {
+        States = appState;
+        
+    }
+}

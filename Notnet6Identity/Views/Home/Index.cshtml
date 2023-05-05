@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form name="CarServ" id="myForm">
+    <div>
+        <label>CarModel:</label>
+        <input type="text" id="model" size="65" name="CarModel" placeholder="Enter Car Model" required>
+    </div>
+
+    <div class="check">
+
+        <label>Addons:</label>
+
+        <input type="checkbox" name="SelectedCheckboxes[]" value="10%off First service visit" id="10%off First service visit">
+        <label for="10%off First service visit">10%off First service visit</label>
+        <input type="checkbox" name="SelectedCheckboxes[]" value="10%off Waterwash" id="10%off Waterwash">
+        <label for="10%off Waterwash">10%off Waterwash</label>
+
+
+        <input type="checkbox" name="SelectedCheckboxes[]" value="Free AC Inspection" id="Free AC Inspection">
+        <label for="Free AC Inspection">Free AC Inspection</label>
+
+
+    </div>
+
+    <button id="btn" type="submit">Submit</button>
+
+
+</form>
+
+
+@*<button id="buttonDemo1">THE AJAX BUTTON</button>*@
+
+
+@section Scripts
+    {
+    <script>
+        //edit: threw console.log around, nothing shows up in the browser console
+
+        $(document).ready(function () {
+          
+
+            var url = '@Url.Action("TEST", "ChatRoom")';
+
+            $('#buttonDemo1').click(function () {
+                alert("buttonDemo1 Click");
+                console.log("THE FORBIDDEN BUTTON HAS BEEN PRESSED!");
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    success: function (result) {
+                        alert("ajax success");
+                    }
+                });
+            });
+        });
+
+    </script>
+}
+
+

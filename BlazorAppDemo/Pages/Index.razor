@@ -1,0 +1,22 @@
+﻿@page "/"
+@using BlazorAppDemo.Models;
+@inject NavigationManager NavigationManager
+@inject ApplicationStates appState
+<PageTitle>Index</PageTitle>
+
+
+
+
+<button class="btn btn-primary" @onclick="PassObject">Pass Objct</button>
+
+@code {
+    private int currentCount = 0;
+
+
+    private void PassObject()
+    {
+        appState.UserDto = new UserDto { UserName = "Kiron", Password = "123654", IsActive = true};
+        NavigationManager.NavigateTo("/SecondPage");
+        currentCount++;
+    }
+}

@@ -1,0 +1,28 @@
+﻿@model DotNetCoreTestApp.Data.CarFormViewModel
+@{
+    ViewData["Title"] = "Combatant Check Box List";
+}
+@*"api/CarServiceForm/SubmitForm"*@
+<form id="SubmitForm" method="post" action=@Url.Action("SubmitForm","CarServiceForm")>
+
+    <table class="table table-striped table-bordered mr-3 ml-3">
+
+        <tr>
+            <th> <label asp-for="CarModel"></label></th>
+            <td> <input asp-for="CarModel" class="form-control" placeholder="Enter Car Model" /><span asp-validation-for="CarModel"></span></td>
+        </tr>
+        <tr>
+            <th>Addons:</th>
+            <th>
+                @for (int i = 0; i < Model.Addons.Count; i++)
+                {
+                    <label>@Model.Addons[i].CheckboxName</label>
+                    <input asp-for="@Model.Addons[i].IsChecked" />
+                    <input type="hidden" asp-for="@Model.Addons[i].Id" />
+                    <input type="hidden" asp-for="@Model.Addons[i].CheckboxName" />
+                }
+            </th>
+        </tr>
+    </table>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
